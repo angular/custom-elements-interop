@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Checkout App</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root>Loading...</app-root>
+    <!-- This snippet ensures that the web components polyfills have loaded first.
+       For browsers which support both ES6 and Custom Elements, we need to include 
+       the custom-elements-es5-adapter.js to allow transpiled ES5 code to work.
+       If the browser DOES NOT support ES6 and Custom Elements, we remove this adapter.
+       Failure to remove the adapter will cause the browser to throw an error because
+       the adapter is (and must be) written in ES6. This is because native Custom
+       Elements require an ES6 class. -->
+  <div id="ce-es5-shim">
+    <script type="text/javascript">
+      if (!window.customElements) {
+        var ceShimContainer = document.querySelector('#ce-es5-shim');
+        ceShimContainer.parentElement.removeChild(ceShimContainer);
+      }
+    </script>
+    <script type="text/javascript" src="node_modules/webcomponents.js/custom-elements-es5-adapter.js"></script>
+  </div>
+</body>
+</html>

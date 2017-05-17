@@ -1,0 +1,100 @@
+<div class="card checkout">
+
+  <div class="column checkout__header">
+    <span>Checkout</span>
+  </div>
+
+  <div class="checkout__sections">
+
+    <div class="column shipping">
+      
+      <div class="shipping__blurb">
+        <span>You're just moments away!</span>
+      </div>
+
+      <hr class="separator">
+
+      <form class="shipping__form" #shippingForm="ngForm"
+        (submit)="onSubmit(shippingForm)">
+        <label for="name"><sup>*</sup>Name</label>
+        <input type="text" id="name" name="name" ngModel required [style.borderLeft]="(shippingForm.submitted && !shipping.valid) ? '4px solid red' : '1px solid #8A8A8A'">
+        <label for="addr"><sup>*</sup>Address</label>
+        <input type="text" id="addr" name="address" ngModel required [style.borderLeft]="(shippingForm.submitted && !shipping.valid) ? '4px solid red' : '1px solid #8A8A8A'">
+
+        <div class="shipping__form-split">
+          <div>
+            <label for="shipping-method"><sup>*</sup>Shipping</label>
+            <dash-listbox id="shipping-method" name="shippingMethod" required
+              ngDefaultControl [ngModel]="defaults.shippingMethod" #shipping="ngModel" [style.borderLeft]="(shippingForm.submitted && !shipping.valid) ? '4px solid red' : '1px solid #8A8A8A'">
+              <dash-option *ngFor="let option of shippingOptions" [value]="option">
+                {{option}}
+              </dash-option>
+            </dash-listbox>
+          </div>
+          <div class="shipping__gift-column">
+            <span [style.visibility]="(shippingForm.submitted && !shipping.valid) ? 'visible' : 'hidden'"
+              class="shipping__error-msg">
+              Please choose a shipping method. 
+            </span>
+            <div>
+              <dash-checkbox name="gift"  [ngModel]="defaults.isGift">
+              </dash-checkbox>
+              <label for="gift">Is this a gift?</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="shipping__submit-btn">Submit</button>
+      </form>
+
+    </div>
+
+    <div class="column tally">
+
+      <div class="product-list">
+        <div class="row product" *ngFor="let product of products">
+          <span>{{product.name}}</span>
+          <span>${{product.price}}</span>
+        </div>
+      </div>
+
+      <div class="totals">
+        <div class="totals-group">
+          <div class="row total">
+            <span>Subtotal</span>
+            <span>${{ getSubtotal() }}</span>
+          </div>
+          <div class="row total">
+            <span>Shipping</span>
+            <span>${{shippingPrices[shippingForm.value.shippingMethod]}}</span>
+          </div>
+          <div class="row total gift-wrapping-total" *ngIf="shippingForm.value.gift">
+              <span>Gift Wrapping</span>
+              <span>${{wrapping}}</span>
+          </div>
+          <div class="row total">
+            <span>Taxes</span>
+            <span>${{tax}}</span>
+          </div>
+        </div>
+        <div class="totals-group">
+          <div class="row total">
+            <span>Total</span>
+            <span>${{ getTotalPrice(shippingForm.value) }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<div class="modal" *ngIf="checkoutComplete">
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
+    <h2>Checkout Succesful</h2>
+    <div>Your package will arrive shortly!</div>
+  </div>
+</div>

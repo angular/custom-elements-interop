@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  /* Image courtesy of Subtle Patterns. https://www.toptal.com/designers/subtlepatterns/sakura */
+  background: url("/assets/images/sakura.png");
+  color: #5E5F5F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+  The dash-checkbox is a vanilla Custom Element without Shadow DOM.
+  It provides a stylesheet that developers can add to their project to use it.
+  In contrast, the dash-listbox uses Shadow DOM to compartmentalize its
+  styles. Each approach has pros and cons. Just using a stylesheet means
+  fewer polyfills to deal with. But compartmentalizing styles into the
+  Shadow DOM makes sure that the element's styles won't affect anything
+  else on the page. Choose whichever approach you're most comfortable with :)
+*/
+@import '../node_modules/dash-checkbox/dist/dash-checkbox.css';
