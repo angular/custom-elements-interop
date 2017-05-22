@@ -7,7 +7,7 @@
   <div class="checkout__sections">
 
     <div class="column shipping">
-      
+
       <div class="shipping__blurb">
         <span>You're just moments away!</span>
       </div>
@@ -34,10 +34,10 @@
           <div class="shipping__gift-column">
             <span [style.visibility]="(shippingForm.submitted && !shipping.valid) ? 'visible' : 'hidden'"
               class="shipping__error-msg">
-              Please choose a shipping method. 
+              Please choose a shipping method.
             </span>
             <div>
-              <dash-checkbox name="gift"  [ngModel]="defaults.isGift">
+              <dash-checkbox id="gift" name="gift"  [ngModel]="defaults.isGift">
               </dash-checkbox>
               <label for="gift">Is this a gift?</label>
             </div>
@@ -94,7 +94,7 @@
 <div class="modal" *ngIf="checkoutComplete">
   <div class="modal-overlay"></div>
   <div class="modal-container">
-    <h2>Checkout Succesful</h2>
+    <h2>Checkout Successful</h2>
     <div>Your package will arrive shortly!</div>
   </div>
 </div>
