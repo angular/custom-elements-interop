@@ -1,5 +1,5 @@
 import { Component, Directive, Renderer, ElementRef } from '@angular/core';
-import { NgForm, NG_VALUE_ACCESSOR, CheckboxControlValueAccessor, NgControl } from '@angular/forms';
+import { CheckboxControlValueAccessor, NgControl } from '@angular/forms';
 
 
 @Component({
@@ -8,7 +8,6 @@ import { NgForm, NG_VALUE_ACCESSOR, CheckboxControlValueAccessor, NgControl } fr
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Form Sample';
   shippingOptions = [
     'Same day',
     'Next day',
@@ -46,8 +45,8 @@ export class AppComponent {
   }
 
   getTotalPrice(formValue) {
-    return this.getSubtotal() + 
-      this.shippingPrices[formValue.shippingMethod] + 
+    return this.getSubtotal() +
+      this.shippingPrices[formValue.shippingMethod] +
       (formValue.gift ? this.wrapping : 0) +
       this.tax;
   }
